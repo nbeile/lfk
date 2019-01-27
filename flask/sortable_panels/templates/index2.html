@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Flask example</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery-1.12.4.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+	<style>
+	#draggablePanelList .panel-heading {
+        cursor: move;
+    }
+	</style>
+    <script>
+        $(function(){
+            $('#draggablePanelList').sortable({
+				handle: '.panel-heading',
+                update: function(event, ui) {
+                    var postData = $(this).sortable('serialize');
+
+                    $.ajax({
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(postData),
+                        dataType: 'json',
+                        url: '/post'
+                    });
+                }
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <ul id="draggablePanelList" class="list-unstyled">
+    {% for i in ordem %}
+		<li class="panel panel-info" id="item_{{ i }}">
+			<div class="panel-heading">You can drag this panel.</div>
+			<div class="panel-body">
+			<!-- item {{ i }} -->
+			{{ uebertragen.i }}
+			<!--
+			item {{i}}
+			-->
+			</div>
+		</li>
+    {% endfor %}
+
+	
+	
+	
+	
+	
+	
+	
+	
+    </ul>
+  </body>
+</html>
