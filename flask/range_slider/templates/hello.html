@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='rangeslider.css') }}">
+<script>
+function outputUpdate(days) {
+    document.querySelector('#selected-days').value = days;
+}
+</script>
+</head>
+<body>
+<form>
+    <p>
+       {{ form.days(class_="slider", min=0, max=365, oninput="outputUpdate(value)") }}
+       <output for="days" id="selected-days">{{ form.days.data }}</output>
+    </p>
+</form>
+</body>
+</html>
