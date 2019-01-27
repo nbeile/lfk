@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="de">
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Jasny compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+	<!-- Upload-Button Stylsheet -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='uplouad.css') }}">
+
+    </head>
+    <body>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="alert alert-{{ category }} alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+				{{message}}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	
+	{% block body %}{% endblock %}
+		<div class="container">
+			<form method="POST" enctype = "multipart/form-data">
+				<!--
+				<span class="btn btn-default btn-file">
+					<input type = "file" name = "test" class="form-control" />
+				</span>
+				-->
+				
+				<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+				  <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+				  <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Datei auswählen</span><span class="fileinput-exists">Ändern</span>
+				  <input type="file" name="test"></span>
+				  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Entfernen</a>
+				</div>
+				
+				<button type="submit" name="primary" class="btn btn-primary">importieren</button>
+
+			</form>
+		</div>
+
+
+
+		
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Jasny compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+	</body>
+</html>
